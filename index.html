@@ -1418,7 +1418,7 @@ ctx.fillStyle = "#ccfff5";
 ctx.font = "14px Arial";
 
 ctx.fillText(
-label.name,
+label.name.replace(/🇺🇸|🇲🇽|🇬🇧|🇯🇵|🇧🇷/g, ""),
 360 + label.x,
 370 + label.y
 );
