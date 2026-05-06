@@ -1254,29 +1254,47 @@ const data = await res.json();
 
 if(data.price){
 
-/* Генерация изменения */
+/* Случайный процент */
 
-let percent =
-(Math.random() * 4 - 2).toFixed(2);
+const change = (Math.random() * 4 - 2).toFixed(2);
 
-/* Цвет */
+/* Данные страны */
 
-let color =
-percent >= 0
-? "#00ff99"
-: "#ff4d4d";
+marketData[market.id] = {
+
+name: market.name,
+
+change: change
+
+};
+
+/* Добавление карточки */
+
+floatingLabels.push({
+
+x: Math.random() * globeRadius * 1.5 - globeRadius * 0.75,
+
+y: Math.random() * globeRadius * 1.5 - globeRadius * 0.75,
+
+name: market.name,
+
+change: change
+
+});
 
 /* Вставка в HTML */
 
-document.getElementById(market.id).innerHTML =
+document.getElementById(market.id).innerHTML = `
 
-`
-<div style="color:${color}">
 ${market.name}<br>
-${percent}%
-</div>
-`;
 
+<span style="color:${change >= 0 ? '#00ff99' : '#ff4d4d'}">
+
+${change >= 0 ? '+' : ''}${change}%
+
+</span>
+
+`;
 }
 
 }
