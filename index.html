@@ -1285,15 +1285,17 @@ change: change
 /* Вставка в HTML */
 
 document.getElementById(market.id).innerHTML = `
+<div style="font-size:14px;font-weight:bold;">
+${market.name}
+</div>
 
-${market.name}<br>
-
-<span style="color:${change >= 0 ? '#00ff99' : '#ff4d4d'}">
-
+<div style="
+color:${change >= 0 ? '#00ff99' : '#ff4d4d'};
+font-size:18px;
+margin-top:4px;
+">
 ${change >= 0 ? '+' : ''}${change}%
-
-</span>
-
+</div>
 `;
 }
 
