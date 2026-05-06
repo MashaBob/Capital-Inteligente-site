@@ -1402,10 +1402,10 @@ ctx.lineWidth = 1;
 /* Карточка */
 
 ctx.roundRect(
-350 + label.x,
-350 + label.y,
-120,
-50,
+300 + label.x,
+340 + label.y,
+140,
+60,
 12
 );
 
@@ -1414,14 +1414,16 @@ ctx.stroke();
 
 /* Название страны */
 
-ctx.font = "14px Arial";
-ctx.fillStyle = "#00ffcc";
+ctx.font = "bold 16px Arial";
+ctx.fillStyle = "#ffffff";
 ctx.textAlign = "center";
+ctx.shadowColor = "#00ffcc";
+ctx.shadowBlur = 12;
 
 ctx.fillText(
 label.name,
-360 + label.x,
-370 + label.y
+350 + label.x,
+350 + label.y
 );
 
 
@@ -1437,8 +1439,8 @@ ctx.font = "bold 16px Arial";
 ctx.fillText(
 (label.change >= 0 ? "+" : "") +
 label.change + "%",
-360 + label.x,
-390 + label.y
+350 + label.x,
+375 + label.y
 );
 
 });
