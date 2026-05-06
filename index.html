@@ -1414,14 +1414,16 @@ ctx.stroke();
 
 /* Название страны */
 
-ctx.fillStyle = "#ccfff5";
 ctx.font = "14px Arial";
+ctx.fillStyle = "#00ffcc";
+ctx.textAlign = "center";
 
 ctx.fillText(
-label.name.replace(/🇺🇸|🇲🇽|🇬🇧|🇯🇵|🇧🇷/g, ""),
+label.name,
 360 + label.x,
 370 + label.y
 );
+
 
 /* Процент */
 
