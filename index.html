@@ -1168,31 +1168,31 @@ const markets = [
 {
 id:"usa",
 symbol:"SPY",
-name:"🇺🇸 Estados Unidos"
+name:" Estados Unidos"
 },
 
 {
 id:"mexico",
 symbol:"EWW",
-name:"🇲🇽 México"
+name:" México"
 },
 
 {
 id:"uk",
 symbol:"EWU",
-name:"🇬🇧 Reino Unido"
+name:" Reino Unido"
 },
 
 {
 id:"japan",
 symbol:"EWJ",
-name:"🇯🇵 Japón"
+name:" Japón"
 },
 
 {
 id:"brazil",
 symbol:"EWZ",
-name:"🇧🇷 Brasil"
+name:" Brasil"
 }
 
 ];
@@ -1406,9 +1406,15 @@ setInterval(loadMarketData,300000);
 /* TRADINGVIEW */
 /* ===================================================== */
 
+/* ===================================================== */
+/* TRADINGVIEW */
+/* ===================================================== */
+
 if(typeof TradingView !== "undefined"){
 
 new TradingView.widget({
+
+container_id:"chart",
 
 width:620,
 
@@ -1420,7 +1426,7 @@ interval:"15",
 
 theme:"dark",
 
-container_id:"chart"
+allow_symbol_change:true
 
 });
 
