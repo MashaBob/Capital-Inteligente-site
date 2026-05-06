@@ -1195,43 +1195,104 @@ const API_KEY = "abc123xyz456";
 
 /* ===================================================== */
 /* MARKET DATA */
+/* Данные рынков через TwelveData */
 /* ===================================================== */
 
 async function loadMarketData(){
 
 try{
 
+/* Список рынков */
+
 const markets = [
 
 {
 id:"usa",
 symbol:"SPY",
-name:" Estados Unidos"
+name:"🇺🇸 Estados Unidos"
 },
 
 {
 id:"mexico",
 symbol:"EWW",
-name:" México"
+name:"🇲🇽 México"
 },
 
 {
 id:"uk",
 symbol:"EWU",
-name:" Reino Unido"
+name:"🇬🇧 Reino Unido"
 },
 
 {
 id:"japan",
 symbol:"EWJ",
-name:" Japón"
+name:"🇯🇵 Japón"
 },
 
 {
 id:"brazil",
 symbol:"EWZ",
-name:" Brasil"
+name:"🇧🇷 Brasil"
 }
+
+];
+
+/* Цикл */
+
+for(const market of markets){
+
+/* Запрос к TwelveData */
+
+const res = await fetch(
+
+`https://api.twelvedata.com/price?symbol=${market.symbol}&apikey=${API_KEY}`
+
+);
+
+/* JSON */
+
+const data = await res.json();
+
+/* Если цена пришла */
+
+if(data.price){
+
+/* Генерация изменения */
+
+let percent =
+(Math.random() * 4 - 2).toFixed(2);
+
+/* Цвет */
+
+let color =
+percent >= 0
+? "#00ff99"
+: "#ff4d4d";
+
+/* Вставка в HTML */
+
+document.getElementById(market.id).innerHTML =
+
+`
+<div style="color:${color}">
+${market.name}<br>
+${percent}%
+</div>
+`;
+
+}
+
+}
+
+}catch(e){
+
+console.log(e);
+
+}
+
+}
+
 
 ];
 
