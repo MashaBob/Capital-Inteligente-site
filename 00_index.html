@@ -1,0 +1,1133 @@
+<!DOCTYPE html> <!-- Тип HTML документа -->
+
+<html lang="es"> <!-- Начало HTML страницы | lang="es" = язык сайта испанский -->
+
+<head> <!-- Служебная часть сайта -->
+
+<meta charset="UTF-8"> <!-- Кодировка UTF-8 для русского/испанского текста -->
+
+<title>Capital Inteligente</title> <!-- Название вкладки браузера -->
+
+<style> <!-- Начало CSS стилей -->
+
+/* ===================================================== */
+/* BODY */
+/* ===================================================== */
+
+body{ /* Всё тело сайта */
+
+    margin:0; /* Убирает стандартные белые отступы браузера */
+
+    background:#0b1220; /* Цвет фона сайта */
+
+    font-family:Arial; /* Шрифт текста */
+
+    color:white; /* Цвет текста */
+
+    overflow-x:hidden; /* Убирает горизонтальный скролл */
+
+    position:relative; /* Основа для absolute элементов */
+
+}
+
+/* ===================================================== */
+/* BACKGROUND GRID */
+/* ===================================================== */
+
+body::before{ /* Дополнительный слой перед body */
+
+    content:""; /* Пустое содержимое */
+
+    position:fixed; /* Фиксированное положение */
+
+    width:100%; /* Ширина на весь экран */
+
+    height:100%; /* Высота на весь экран */
+
+    background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), /* Горизонтальные линии */
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); /* Вертикальные линии */
+
+    background-size:40px 40px; /* Размер клеток сетки */
+
+    z-index:-1; /* Отправляет слой назад */
+
+}
+
+/* ===================================================== */
+/* CONTAINER */
+/* ===================================================== */
+
+.container{ /* Главный контейнер */
+
+    display:flex; /* Flexbox */
+
+    justify-content:space-between; /* Пространство между блоками */
+
+    align-items:center; /* Центрирование по вертикали */
+
+    padding:60px; /* Внутренние отступы */
+
+}
+
+/* ===================================================== */
+/* LEFT SIDE */
+/* ===================================================== */
+
+.left{ /* Левая часть сайта */
+
+    width:38%; /* Ширина */
+
+}
+
+.small{ /* Маленький текст */
+
+    font-size:14px; /* Размер текста */
+
+    opacity:0.7; /* Прозрачность */
+
+}
+
+.green{ /* Зелёный текст */
+
+    color:#00ffcc; /* Цвет */
+
+    font-size:22px; /* Размер */
+
+    margin-top:5px; /* Отступ сверху */
+
+    font-weight:bold; /* Жирный */
+
+}
+
+h1{ /* Главный заголовок */
+
+    font-size:92px; /* Размер текста */
+
+    line-height:0.9; /* Расстояние между строк */
+
+    margin:20px 0; /* Внешние отступы */
+
+    text-shadow:
+    0 0 30px rgba(255,255,255,0.2); /* Свечение текста */
+
+}
+
+.desc{ /* Описание */
+
+    opacity:0.7; /* Прозрачность */
+
+    margin-bottom:25px; /* Отступ снизу */
+
+    font-size:16px; /* Размер */
+
+    line-height:1.6; /* Высота строки */
+
+}
+  /* ===================================================== */
+/* BUTTON */
+/* ===================================================== */
+
+button{ /* Все кнопки сайта */
+
+    background:#00ffcc; /* Цвет кнопки */
+
+    border:none; /* Убирает рамку */
+
+    padding:16px 36px; /* Размер кнопки */
+
+    border-radius:14px; /* Скругление */
+
+    font-size:17px; /* Размер текста */
+
+    cursor:pointer; /* Курсор рука */
+
+    transition:0.3s; /* Плавность */
+
+    box-shadow:
+    0 0 25px rgba(0,255,200,0.25); /* Свечение */
+
+}
+
+button:hover{ /* Наведение мышки */
+
+    transform:translateY(-3px); /* Поднимает кнопку */
+
+    box-shadow:
+    0 0 40px rgba(0,255,200,0.45); /* Усиливает свечение */
+
+}
+  /* ===================================================== */
+/* LIVE PRICES */
+/* ===================================================== */
+
+.prices{ /* Контейнер цен */
+
+    display:flex; /* Ставит цены рядом */
+
+    gap:10px; /* Расстояние между блоками */
+
+    margin-top:25px; /* Отступ сверху */
+
+}
+
+.prices span{ /* Карточка цены */
+
+    background:#1a2335; /* Цвет фона */
+
+    padding:10px 15px; /* Внутренние отступы */
+
+    border-radius:12px; /* Скругление */
+
+    font-size:14px; /* Размер текста */
+
+    border:1px solid rgba(255,255,255,0.05); /* Рамка */
+
+}
+
+/* ===================================================== */
+/* CARDS */
+/* ===================================================== */
+
+.stats-advanced{ /* Контейнер карточек */
+
+    display:flex; /* Flexbox */
+
+    gap:20px; /* Расстояние между карточками */
+
+    margin-top:40px; /* Отступ сверху */
+
+    flex-wrap:wrap; /* Перенос карточек */
+
+}
+
+.card{ /* Карточка */
+
+    position:relative; /* Основа для absolute */
+
+    overflow:hidden; /* Скрывает лишнее */
+
+    background:rgba(255,255,255,0.03); /* Полупрозрачный фон */
+
+    border:1px solid rgba(0,255,200,0.15); /* Рамка */
+
+    border-radius:18px; /* Скругление */
+
+    padding:20px 24px; /* Внутренние отступы */
+
+    min-width:180px; /* Минимальная ширина */
+
+    backdrop-filter:blur(12px); /* Эффект стекла */
+
+    transition:0.3s; /* Плавность */
+
+    box-shadow:
+    0 0 25px rgba(0,255,200,0.05); /* Свечение */
+
+}
+
+.card::before{ /* Декоративный круг */
+
+    content:""; /* Пустое содержимое */
+
+    position:absolute; /* Свободное позиционирование */
+
+    width:120px; /* Ширина */
+
+    height:120px; /* Высота */
+
+    background:rgba(0,255,200,0.04); /* Цвет */
+
+    border-radius:50%; /* Делает круг */
+
+    top:-40px; /* Смещение вверх */
+
+    right:-40px; /* Смещение вправо */
+
+}
+
+.card:hover{ /* Наведение */
+
+    transform:translateY(-4px); /* Поднимает карточку */
+
+    box-shadow:
+    0 0 30px rgba(0,255,200,0.2); /* Усиливает свечение */
+
+}
+
+.label{ /* Название показателя */
+
+    font-size:13px; /* Размер текста */
+
+    color:#9ca3af; /* Цвет текста */
+
+}
+
+.value{ /* Значение */
+
+    font-size:24px; /* Размер цифр */
+
+    font-weight:bold; /* Жирный */
+
+}
+
+.value.green{ /* Зелёное значение */
+
+    color:#00ffc8; /* Цвет */
+
+}
+
+.card .desc{ /* Описание */
+
+    font-size:12px; /* Размер текста */
+
+    color:#6b7280; /* Цвет текста */
+
+}
+  /* ===================================================== */
+/* RIGHT SIDE */
+/* ===================================================== */
+
+.right{ /* Правая часть сайта */
+
+    width:58%; /* Ширина */
+
+    display:flex; /* Flexbox */
+
+    flex-direction:column; /* Элементы вертикально */
+
+    align-items:center; /* Центрирование */
+
+}
+
+/* ===================================================== */
+/* SPHERE */
+/* ===================================================== */
+
+.sphere-wrap{ /* Контейнер всей сферы */
+
+    position:relative; /* Основа для absolute элементов */
+
+    width:760px; /* Ширина */
+
+    height:760px; /* Высота */
+
+    display:flex; /* Flexbox */
+
+    justify-content:center; /* Центр по горизонтали */
+
+    align-items:center; /* Центр по вертикали */
+
+}
+
+.glow{ /* Свечение вокруг шара */
+
+    position:absolute; /* Свободное позиционирование */
+
+    width:520px; /* Ширина */
+
+    height:520px; /* Высота */
+
+    background:radial-gradient(
+        circle,
+        rgba(0,255,200,0.25),
+        transparent
+    ); /* Круговое свечение */
+
+    border-radius:50%; /* Делает круг */
+
+    filter:blur(40px); /* Размытие */
+
+    z-index:1; /* Слой */
+
+}
+
+/* ===================================================== */
+/* ORBITS */
+/* ===================================================== */
+
+.orbit{ /* Кольца вокруг шара */
+
+    position:absolute; /* Свободное положение */
+
+    border:1px solid rgba(0,255,200,0.08); /* Линия кольца */
+
+    border-radius:50%; /* Делает круг */
+
+    z-index:1; /* Слой */
+
+}
+
+/* ===================================================== */
+/* LINES */
+/* ===================================================== */
+
+.line{ /* Светящиеся линии */
+
+    position:absolute; /* Свободное положение */
+
+    height:2px; /* Толщина линии */
+
+    background:rgba(0,255,200,0.25); /* Цвет */
+
+    transform-origin:left center; /* Точка вращения */
+
+    z-index:2; /* Слой */
+
+    box-shadow:
+    0 0 15px rgba(0,255,200,0.3); /* Свечение */
+
+}
+
+/* ===================================================== */
+/* GLOBE */
+/* ===================================================== */
+
+.globe-container{ /* Контейнер canvas */
+
+    position:relative; /* Основа */
+
+    width:700px; /* Ширина */
+
+    height:700px; /* Высота */
+
+    z-index:2; /* Слой */
+
+}
+
+.globe-container canvas{ /* Canvas для шара */
+
+    position:absolute; /* Свободное положение */
+
+    top:0; /* Сверху */
+
+    left:0; /* Слева */
+
+    width:700px; /* Ширина */
+
+    height:700px; /* Высота */
+
+}
+
+/* ===================================================== */
+/* COUNTRIES */
+/* ===================================================== */
+
+.city{ /* Названия стран */
+
+    position:absolute; /* Свободное положение */
+
+    transform:translate(-50%,-50%); /* Центровка */
+
+    color:#00ffc3; /* Цвет текста */
+
+    font-size:13px; /* Размер текста */
+
+    padding:7px 14px; /* Внутренние отступы */
+
+    border-radius:14px; /* Скругление */
+
+    background:rgba(0,255,200,0.08); /* Фон */
+
+    border:1px solid rgba(0,255,200,0.35); /* Рамка */
+
+    white-space:nowrap; /* Без переноса */
+
+    z-index:5; /* Слой */
+
+    backdrop-filter:blur(8px); /* Эффект стекла */
+
+    box-shadow:
+    0 0 18px rgba(0,255,200,0.15); /* Свечение */
+
+}
+
+/* ===================================================== */
+/* CHART */
+/* ===================================================== */
+
+.chart{ /* Блок графика */
+
+    width:620px; /* Ширина */
+
+    margin-top:-40px; /* Поднимает вверх */
+
+}
+  </style> <!-- Конец CSS -->
+
+</head> <!-- Конец head -->
+
+<body> <!-- Начало видимой части сайта -->
+
+<div class="container"> <!-- Главный контейнер -->
+
+<div class="left"> <!-- Левая часть -->
+
+<div class="small"> <!-- Маленький текст -->
+
+Asesoria y Gestoria Diversificada <!-- Текст -->
+
+</div> <!-- Конец блока -->
+
+<div class="green"> <!-- Зелёный текст -->
+
+Estrategias Inteligentes <!-- Текст -->
+
+</div> <!-- Конец блока -->
+
+<h1> <!-- Главный заголовок -->
+
+Capital<br> <!-- br = перенос строки -->
+
+Inteligente <!-- Вторая строка -->
+
+</h1> <!-- Конец h1 -->
+
+<div class="desc"> <!-- Описание -->
+
+Optimiza tus inversiones con datos reales del mercado en tiempo real.
+<!-- Текст описания -->
+
+</div> <!-- Конец описания -->
+
+<button onclick="window.location.href='register.html'">
+<!-- Кнопка -->
+<!-- onclick = действие при клике -->
+<!-- window.location.href = переход -->
+<!-- register.html = страница -->
+
+Comenzar ahora <!-- Текст кнопки -->
+
+</button> <!-- Конец кнопки -->
+
+<div class="prices"> <!-- Контейнер цен -->
+
+<span id="btc"></span>
+<!-- span = маленький блок -->
+<!-- id="btc" = сюда JS вставит цену BTC -->
+
+<span id="eth"></span>
+<!-- ETH -->
+
+<span id="mxn"></span>
+<!-- MXN -->
+
+</div> <!-- Конец блока цен -->
+
+<div class="stats-advanced"> <!-- Контейнер карточек -->
+
+<div class="card"> <!-- Карточка -->
+
+<div class="label"> <!-- Название -->
+
+📈 Profit <!-- Текст -->
+
+</div>
+
+<div class="value green" id="profit">
+<!-- value = значение -->
+<!-- green = зелёный цвет -->
+<!-- id="profit" = JS изменяет число -->
+
+0 <!-- Стартовое значение -->
+
+</div>
+
+<div class="desc"> <!-- Описание -->
+
+Ganancia total <!-- Текст -->
+
+</div>
+
+</div> <!-- Конец карточки -->
+
+<div class="card"> <!-- Вторая карточка -->
+
+<div class="label">
+
+🎯 Win Rate
+
+</div>
+
+<div class="value green" id="win">
+<!-- JS обновляет значение -->
+
+83%
+
+</div>
+
+<div class="desc">
+
+Operaciones exitosas
+
+</div>
+
+</div> <!-- Конец карточки -->
+
+<div class="card"> <!-- Третья карточка -->
+
+<div class="label">
+
+⚖️ Risk / Reward
+
+</div>
+
+<div class="value">
+
+1:3.7
+
+</div>
+
+<div class="desc">
+
+Relación promedio
+
+</div>
+
+</div> <!-- Конец карточки -->
+
+</div> <!-- Конец stats -->
+
+</div> <!-- Конец left -->
+  <div class="right"> <!-- Правая часть сайта -->
+
+<div class="sphere-wrap"> <!-- Контейнер всей сферы -->
+
+<div class="glow"></div>
+<!-- glow = свечение вокруг шара -->
+
+<div class="orbit"
+style="width:420px;height:420px;top:140px;left:140px;">
+</div>
+<!-- orbit = кольцо -->
+<!-- width/height = размер -->
+<!-- top/left = положение -->
+
+<div class="orbit"
+style="width:520px;height:520px;top:90px;left:90px;">
+</div>
+<!-- Второе кольцо -->
+
+<div class="orbit"
+style="width:620px;height:620px;top:40px;left:40px;">
+</div>
+<!-- Третье кольцо -->
+
+<div class="line"
+style="width:180px; top:180px; left:310px; transform:rotate(-35deg);">
+</div>
+<!-- Светящаяся линия -->
+<!-- width = длина -->
+<!-- top/left = положение -->
+<!-- rotate = поворот -->
+
+<div class="line"
+style="width:140px; top:310px; left:330px; transform:rotate(12deg);">
+</div>
+<!-- Вторая линия -->
+
+<div class="line"
+style="width:170px; top:380px; left:300px; transform:rotate(42deg);">
+</div>
+<!-- Третья линия -->
+
+<div class="globe-container">
+<!-- Контейнер шара -->
+
+<canvas
+id="sphere"
+width="700"
+height="700">
+</canvas>
+<!-- canvas = область рисования -->
+<!-- id="sphere" = JS ищет этот canvas -->
+<!-- width/height = размер -->
+
+<div class="city"
+id="usa"
+style="top:18%; left:36%">
+</div>
+<!-- Блок страны -->
+<!-- id="usa" = США -->
+<!-- top/left = положение -->
+
+<div class="city"
+id="canada"
+style="top:28%; left:24%">
+</div>
+<!-- Канада -->
+
+<div class="city"
+id="mexico"
+style="top:44%; left:18%">
+</div>
+<!-- Мексика -->
+
+<div class="city"
+id="uk"
+style="top:32%; left:62%">
+</div>
+<!-- Великобритания -->
+
+<div class="city"
+id="france"
+style="top:42%; left:72%">
+</div>
+<!-- Франция -->
+
+<div class="city"
+id="germany"
+style="top:52%; left:76%">
+</div>
+<!-- Германия -->
+
+<div class="city"
+id="australia"
+style="top:68%; left:68%">
+</div>
+<!-- Австралия -->
+
+<div class="city"
+id="hongkong"
+style="top:58%; left:90%">
+</div>
+<!-- Гонконг -->
+
+<div class="city"
+id="japan"
+style="top:42%; left:95%">
+</div>
+<!-- Япония -->
+
+<div class="city"
+id="brazil"
+style="top:74%; left:52%">
+</div>
+<!-- Бразилия -->
+
+</div> <!-- Конец globe-container -->
+
+</div> <!-- Конец sphere-wrap -->
+
+<div class="chart">
+<!-- Контейнер графика -->
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<!-- Подключение TradingView -->
+
+<div id="chart"></div>
+<!-- Сюда загрузится график -->
+
+</div> <!-- Конец chart -->
+
+</div> <!-- Конец right -->
+
+</div> <!-- Конец container -->
+  <script>
+/* Начало JavaScript */
+
+/* ===================================================== */
+/* API KEY */
+/* ===================================================== */
+
+const API_KEY = "DQBKGW2B7BDA8NC7";
+/* Ключ AlphaVantage */
+
+/* ===================================================== */
+/* MARKET DATA */
+/* ===================================================== */
+
+async function loadMarketData(){
+/* Функция загрузки рынков */
+
+try{
+/* Попытка выполнить код */
+
+const markets = [
+/* Массив рынков */
+
+{
+id:"usa",
+/* id HTML элемента */
+
+symbol:"SPY",
+/* Биржевой тикер */
+
+name:"🇺🇸 Estados Unidos"
+/* Название */
+
+},
+
+{
+id:"mexico",
+
+symbol:"EWW",
+
+name:"🇲🇽 México"
+
+},
+
+{
+id:"uk",
+
+symbol:"EWU",
+
+name:"🇬🇧 Reino Unido"
+
+},
+
+{
+id:"japan",
+
+symbol:"EWJ",
+
+name:"🇯🇵 Japón"
+
+},
+
+{
+id:"brazil",
+
+symbol:"EWZ",
+
+name:"🇧🇷 Brasil"
+
+}
+
+];
+/* Конец массива */
+
+for(const market of markets){
+/* Цикл */
+
+const res = await fetch(
+/* Запрос к API */
+
+`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${market.symbol}&apikey=${API_KEY}`
+
+);
+
+const data = await res.json();
+/* JSON ответ */
+
+const quote = data["Global Quote"];
+/* Котировка */
+
+if(quote){
+/* Проверка */
+
+const change = quote["10. change percent"];
+/* Процент изменения */
+
+document.getElementById(market.id).innerHTML =
+`${market.name}<br>${change}`;
+/* Вставка текста */
+
+}
+
+}
+
+}catch(e){
+/* Ошибка */
+
+console.log(e);
+/* Вывод ошибки */
+
+}
+
+}
+
+/* ===================================================== */
+/* CANVAS */
+/* ===================================================== */
+
+const canvas = document.getElementById("sphere");
+/* Находит canvas */
+
+const ctx = canvas.getContext("2d");
+/* 2D рисование */
+
+let mouseX = 0;
+/* Позиция мышки X */
+
+let mouseY = 0;
+/* Позиция мышки Y */
+
+let angleX = 0;
+/* Поворот X */
+
+let angleY = 0;
+/* Поворот Y */
+
+let auto = 0;
+/* Автовращение */
+
+canvas.addEventListener("mousemove", e => {
+/* Движение мышки */
+
+let rect = canvas.getBoundingClientRect();
+/* Размеры canvas */
+
+mouseX = (e.clientX - rect.left - 350) / 350;
+/* Координата X */
+
+mouseY = (e.clientY - rect.top - 350) / 350;
+/* Координата Y */
+
+});
+
+const pts = [];
+/* Точки шара */
+
+for(let i = 0; i < 1500; i++){
+/* Создание точек */
+
+let t = Math.random() * Math.PI * 2;
+/* Случайный угол */
+
+let p = Math.acos(Math.random() * 2 - 1);
+/* Позиция */
+
+let r = 250;
+/* Радиус */
+
+pts.push({
+
+x:r*Math.sin(p)*Math.cos(t),
+
+y:r*Math.sin(p)*Math.sin(t),
+
+z:r*Math.cos(p)
+
+});
+/* Добавляет точку */
+
+}
+
+/* ===================================================== */
+/* DRAW */
+/* ===================================================== */
+
+function draw(){
+/* Рисование */
+
+ctx.clearRect(0,0,700,700);
+/* Очистка canvas */
+
+auto += 0.002;
+/* Автовращение */
+
+angleX += (mouseY - angleX) * 0.05;
+/* Плавный поворот */
+
+angleY += (mouseX + auto - angleY) * 0.05;
+/* Плавный поворот */
+
+pts.forEach(p => {
+/* Цикл точек */
+
+let x = p.x;
+
+let y = p.y*Math.cos(angleX)-p.z*Math.sin(angleX);
+
+let z = p.y*Math.sin(angleX)+p.z*Math.cos(angleX);
+
+let x2 = x*Math.cos(angleY)-z*Math.sin(angleY);
+
+let z2 = x*Math.sin(angleY)+z*Math.cos(angleY);
+
+let scale = 600/(600+z2);
+/* Глубина */
+
+let px = 350 + x2*scale;
+/* Позиция X */
+
+let py = 350 + y*scale;
+/* Позиция Y */
+
+ctx.beginPath();
+/* Начало рисования */
+
+ctx.arc(px,py,2*scale,0,Math.PI*2);
+/* Круг */
+
+ctx.fillStyle = "#00ffcc";
+/* Цвет */
+
+ctx.fill();
+/* Заливка */
+
+});
+
+requestAnimationFrame(draw);
+/* Повтор анимации */
+
+}
+
+draw();
+/* Запуск */
+
+/* ===================================================== */
+/* LIVE PRICES */
+/* ===================================================== */
+
+async function loadPrices(){
+/* Загрузка цен крипты */
+
+try{
+/* Попытка выполнить */
+
+const res = await fetch(
+/* Запрос к CoinGecko API */
+
+"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd,mxn"
+
+);
+
+const data = await res.json();
+/* JSON ответ */
+
+document.getElementById("btc").innerHTML =
+"BTC: $" + data.bitcoin.usd.toLocaleString();
+/* Цена Bitcoin */
+
+document.getElementById("eth").innerHTML =
+"ETH: $" + data.ethereum.usd.toLocaleString();
+/* Цена Ethereum */
+
+document.getElementById("mxn").innerHTML =
+"MXN: " + data.bitcoin.mxn.toLocaleString();
+/* BTC в MXN */
+
+}catch(e){
+/* Ошибка */
+
+console.log(e);
+/* Вывод ошибки */
+
+}
+
+}
+
+loadPrices();
+/* Первый запуск */
+
+setInterval(loadPrices,10000);
+/* Повтор каждые 10 секунд */
+
+/* ===================================================== */
+/* ANIMATION */
+/* ===================================================== */
+
+function animateValue(id,start,end,duration){
+/* Анимация цифр */
+
+let obj = document.getElementById(id);
+/* Находит элемент */
+
+let startTime = null;
+/* Время старта */
+
+function step(timestamp){
+/* Кадр анимации */
+
+if(!startTime){
+/* Если первый кадр */
+
+startTime = timestamp;
+/* Запоминает время */
+
+}
+
+let progress = Math.min(
+(timestamp - startTime) / duration,
+1
+);
+/* Прогресс от 0 до 1 */
+
+if(id === "profit"){
+/* Если profit */
+
+obj.innerHTML =
+"+" + Math.floor(
+progress * (end - start) + start
+);
+/* Анимирует число */
+
+}else{
+/* Для остальных */
+
+obj.innerHTML =
+Math.floor(
+progress * (end - start) + start
+) + "%";
+/* Добавляет % */
+
+}
+
+if(progress < 1){
+/* Пока не закончено */
+
+requestAnimationFrame(step);
+/* Следующий кадр */
+
+}
+
+}
+
+requestAnimationFrame(step);
+/* Старт */
+
+}
+
+animateValue("profit",0,9434,2000);
+/* Анимация profit */
+
+animateValue("win",0,83,2000);
+/* Анимация win */
+
+/* ===================================================== */
+/* START MARKET DATA */
+/* ===================================================== */
+
+loadMarketData();
+/* Первая загрузка */
+
+setInterval(loadMarketData,300000);
+/* Обновление каждые 5 минут */
+
+/* ===================================================== */
+/* TRADINGVIEW */
+/* ===================================================== */
+
+new TradingView.widget({
+/* Создание TradingView */
+
+width:620,
+/* Ширина */
+
+height:360,
+/* Высота */
+
+symbol:"BINANCE:BTCUSDT",
+/* Пара */
+
+interval:"15",
+/* Таймфрейм */
+
+theme:"dark",
+/* Тёмная тема */
+
+container_id:"chart"
+/* div для графика */
+
+});
+
+</script>
+<!-- Конец JavaScript -->
+
+</body>
+<!-- Конец body -->
+
+</html>
+<!-- Конец HTML -->  
